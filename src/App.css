@@ -1,0 +1,145 @@
+.App {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667EEA, #764BA2);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+  animation: gradientBG 15s ease infinite;
+  padding: 20px;
+}
+
+.main-container {
+  display: flex;
+  justify-content: center; /* Center everything by default */
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1400px;
+  gap: 20px; /* Add spacing between genre grid and movie list */
+  transition: all 0.3s ease; /* Smooth transition for layout changes */
+}
+
+.main-container.shift-left {
+  justify-content: flex-start; /* Shift to the left when a genre is selected */
+}
+
+.genre-sections {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columns */
+  grid-auto-rows: 200px; /* Fixed row height */
+  gap: 20px; /* Spacing between grid items */
+  width: 100%; /* Full width by default */
+}
+
+.main-container.shift-left .genre-sections {
+  width: 70%; /* Adjust width when shifted to the left */
+}
+
+.genre-section {
+  cursor: pointer;
+  text-align: center;
+  width: 100%; /* Full width of the grid cell */
+  height: 100%; /* Full height of the grid cell */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Center content vertically */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden; /* Ensure the image doesn't overflow the container */
+  opacity: 0; /* Start with opacity 0 */
+  transform: scale(0.8) rotate(-10deg); /* Start smaller and rotated */
+  animation-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Bouncy easing */
+  position: relative; /* For positioning the text overlay */
+}
+
+.genre-section.visible {
+  opacity: 1; /* Fade in */
+  transform: scale(1) rotate(0deg); /* Scale up and rotate back to normal */
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.genre-section img {
+  width: 100%; /* Full width of the grid cell */
+  height: 100%; /* Full height of the grid cell */
+  border-radius: 12px; /* Slightly larger border radius */
+  object-fit: cover; /* Ensure the image covers the area without distortion */
+  object-position: center; /* Center the image within the container */
+  transition: transform 0.3s ease, filter 0.3s ease; /* Add filter transition */
+}
+
+.genre-section:hover img {
+  transform: scale(1.5); /* Slight zoom on hover */
+  filter: brightness(0.35) sepia(0.6) hue-rotate(30deg) saturate(1.5);
+}
+
+.genre-section h2 {
+  margin: 0;
+  font-size: 18px; /* Slightly larger font size */
+  font-weight: 600;
+  color: #fff;
+  transition: color 0.3s ease;
+  position: absolute; /* Position the text absolutely */
+  bottom: 20px; /* Place the text at the bottom with some spacing */
+  left: 50%; /* Center the text horizontally */
+  transform: translateX(-50%); /* Center the text horizontally */
+  background: rgba(0, 0, 0, 0.6); /* Semi-transparent background for better readability */
+  padding: 8px 16px; /* Add padding around the text */
+  border-radius: 8px; /* Rounded corners for the text background */
+  white-space: nowrap; /* Prevent text from wrapping */
+}
+
+.genre-section:hover h2 {
+  color: #ffdd57; /* Change text color on hover */
+  background: rgba(0, 0, 0, 0.8); /* Darker background on hover */
+}
+
+.genre-title {
+  font-size: 36px; /* Large font size */
+  font-weight: 600; /* Bold font */
+  color: #fff; /* White text */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Add a subtle shadow */
+  margin: 0;
+}
+
+.movie-list {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 30%; /* Adjust width to fit the right side */
+  margin-left: 20px; /* Add spacing between genre grid and movie list */
+}
+
+.movie-list ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.movie-list li {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 15px;
+  transition: all 0.3s ease;
+}
+
+.movie-list li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+.movie-list button {
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #667eea;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.movie-list button:hover {
+    background-color: #764ba2;
+}
