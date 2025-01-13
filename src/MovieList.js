@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './App.css';
 
-// Import images
+// Import images (ensure these paths are correct)
 import actionImage from './assets/images/action.jpg';
 import adventureImage from './assets/images/adventure.jpeg';
 import animationImage from './assets/images/animation.jpeg';
@@ -52,6 +52,7 @@ const MovieList = () => {
     const [selectedGenre, setSelectedGenre] = useState('');
     const [visibleGenres, setVisibleGenres] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
     const [randomMovie, setRandomMovie] = useState(null);
 
     useEffect(() => {
@@ -59,7 +60,7 @@ const MovieList = () => {
         const timeoutIds = genres.map((genre, index) => {
             return setTimeout(() => {
                 setVisibleGenres((prev) => [...prev, genre]);
-            }, index * 350); //delay between each genre
+            }, index * 350); // Delay between each genre
         });
 
         // Animate the title after a short delay
@@ -76,19 +77,18 @@ const MovieList = () => {
 
     useEffect(() => {
         if (selectedGenre) {
-            setLoading(true); // Set loading to true when fetching movies
-            console.log("Selected Genre:", selectedGenre); // Log the selected genre
+            setLoading(true);
+            setError(null); // Clear previous errors
             const fetchMovies = async () => {
                 try {
-                    const response = await axios.get(`http://localhost:8080/api/movies/top-rated?genre=${selectedGenre}`);
-                    console.log("API Response:", response.data); // Log the response
-                    // Assuming the API returns all movies, we filter the top 3 by rating
+                    const response = await axios.get(`https://filmfolio-backend-ad0f.onrender.com/api/movies/top-rated?genre=${selectedGenre}`);
                     const top3Movies = response.data.sort((a, b) => b.rating - a.rating).slice(0, 3);
                     setMovies(top3Movies);
                 } catch (error) {
                     console.error('Error fetching movies:', error);
+                    setError('Failed to fetch movies. Please try again later.');
                 } finally {
-                    setLoading(false); // Set loading to false after fetching
+                    setLoading(false);
                 }
             };
 
@@ -104,7 +104,7 @@ const MovieList = () => {
 
         setLoading(true);
         try {
-            const response = await axios.get(`http://localhost:8080/api/movies?genre=${selectedGenre}`);
+            const response = await axios.get(`https://filmfolio-backend-ad0f.onrender.com/api/movies?genre=${selectedGenre}`);
             const movies = response.data;
             if (movies.length > 0) {
                 const randomIndex = Math.floor(Math.random() * movies.length);
@@ -122,7 +122,7 @@ const MovieList = () => {
     const handleRandomMovieAllGenres = async () => {
         setLoading(true);
         try {
-            const response = await axios.get(`http://localhost:8080/api/movies`);
+            const response = await axios.get(`https://filmfolio-backend-ad0f.onrender.com/api/movies`);
             const movies = response.data;
             if (movies.length > 0) {
                 const randomIndex = Math.floor(Math.random() * movies.length);
@@ -169,6 +169,8 @@ const MovieList = () => {
                         <h2>Highest Rated {selectedGenre} Movies</h2>
                         {loading ? (
                             <p>Loading...</p>
+                        ) : error ? (
+                            <p style={{ color: 'red' }}>{error}</p>
                         ) : movies.length > 0 ? (
                             <ul>
                                 {movies.map((movie, index) => (
