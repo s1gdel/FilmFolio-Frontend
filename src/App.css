@@ -12,93 +12,93 @@
 
 .main-container {
   display: flex;
-  justify-content: center; /* Center everything by default */
+  justify-content: center;
   align-items: flex-start;
   width: 100%;
   max-width: 1400px;
-  gap: 20px; /* Add spacing between genre grid and movie list */
-  transition: all 0.3s ease; /* Smooth transition for layout changes */
+  gap: 20px;
+  transition: all 0.3s ease;
 }
 
 .main-container.shift-left {
-  justify-content: flex-start; /* Shift to the left when a genre is selected */
+  justify-content: flex-start;
 }
 
 .genre-sections {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 columns */
-  grid-auto-rows: 200px; /* Fixed row height */
-  gap: 20px; /* Spacing between grid items */
-  width: 100%; /* Full width by default */
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 200px;
+  gap: 20px;
+  width: 100%;
 }
 
 .main-container.shift-left .genre-sections {
-  width: 70%; /* Adjust width when shifted to the left */
+  width: 70%;
 }
 
 .genre-section {
   cursor: pointer;
   text-align: center;
-  width: 100%; /* Full width of the grid cell */
-  height: 100%; /* Full height of the grid cell */
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; /* Center content vertically */
+  justify-content: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  overflow: hidden; /* Ensure the image doesn't overflow the container */
-  opacity: 0; /* Start with opacity 0 */
-  transform: scale(0.8) rotate(-10deg); /* Start smaller and rotated */
-  animation-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Bouncy easing */
-  position: relative; /* For positioning the text overlay */
+  overflow: hidden;
+  opacity: 0;
+  transform: scale(0.8) rotate(-10deg);
+  animation-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  position: relative;
 }
 
 .genre-section.visible {
-  opacity: 1; /* Fade in */
-  transform: scale(1) rotate(0deg); /* Scale up and rotate back to normal */
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
 .genre-section img {
-  width: 100%; /* Full width of the grid cell */
-  height: 100%; /* Full height of the grid cell */
-  border-radius: 12px; /* Slightly larger border radius */
-  object-fit: cover; /* Ensure the image covers the area without distortion */
-  object-position: center; /* Center the image within the container */
-  transition: transform 0.3s ease, filter 0.3s ease; /* Add filter transition */
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
 
 .genre-section:hover img {
-  transform: scale(1.5); /* Slight zoom on hover */
+  transform: scale(1.5);
   filter: brightness(0.35) sepia(0.6) hue-rotate(30deg) saturate(1.5);
 }
 
 .genre-section h2 {
   margin: 0;
-  font-size: 18px; /* Slightly larger font size */
+  font-size: 18px;
   font-weight: 600;
   color: #fff;
   transition: color 0.3s ease;
-  position: absolute; /* Position the text absolutely */
-  bottom: 20px; /* Place the text at the bottom with some spacing */
-  left: 50%; /* Center the text horizontally */
-  transform: translateX(-50%); /* Center the text horizontally */
-  background: rgba(0, 0, 0, 0.6); /* Semi-transparent background for better readability */
-  padding: 8px 16px; /* Add padding around the text */
-  border-radius: 8px; /* Rounded corners for the text background */
-  white-space: nowrap; /* Prevent text from wrapping */
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  padding: 8px 16px;
+  border-radius: 8px;
+  white-space: nowrap;
 }
 
 .genre-section:hover h2 {
-  color: #ffdd57; /* Change text color on hover */
-  background: rgba(0, 0, 0, 0.8); /* Darker background on hover */
+  color: #ffdd57;
+  background: rgba(0, 0, 0, 0.8);
 }
 
 .genre-title {
-  font-size: 36px; /* Large font size */
-  font-weight: 600; /* Bold font */
-  color: #fff; /* White text */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Add a subtle shadow */
+  font-size: 36px;
+  font-weight: 600;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   margin: 0;
 }
 
@@ -108,8 +108,8 @@
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 30%; /* Adjust width to fit the right side */
-  margin-left: 20px; /* Add spacing between genre grid and movie list */
+  width: 30%;
+  margin-left: 20px;
 }
 
 .movie-list ul {
@@ -129,17 +129,18 @@
   transform: translateY(-5px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
+
 .movie-list button {
-    margin: 10px;
-    padding: 10px 20px;
-    background-color: #667eea;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: #667eea;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .movie-list button:hover {
-    background-color: #764ba2;
+  background-color: #764ba2;
 }
